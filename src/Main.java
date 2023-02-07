@@ -66,16 +66,36 @@ public class Main {
             }
         }
     }
+
+    public static  void DFS(ArrayList<Edge>graph[],int curr,boolean vis[]){
+        System.out.print(curr+" ");
+        vis[curr]=true;
+         for(int i=0;i<graph[curr].size();i++){
+             Edge e=graph[curr].get(i);
+
+                 if(vis[e.dest]==false) {
+                     DFS(graph, e.dest, vis);
+                 }
+
+         }
+    }
     public static void main(String[] args) {
         int v=7;
         ArrayList<Edge>graph[]=new ArrayList[v];
         createGraph(graph);
         boolean vis[]=new boolean[v];
 
-          for(int i=0;i< vis.length;i++){
-              if(vis[i]==false){
-                  BFS(graph,v,vis,i);
-              }
-          }
+//          for(int i=0;i< vis.length;i++){
+//              if(vis[i]==false){
+//                  BFS(graph,v,vis,i);
+//              }
+//          }
+
+
+         for(int i=0;i<v;i++) {
+             if(vis[i]==false) {
+                 DFS(graph, i, vis);
+             }
+         }
     }
 }
